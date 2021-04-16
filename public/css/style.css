@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  scroll-behavior: smooth;
+}
+
+.navbar- {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: #212121;
+  width: 100%;
+  color: rgb(255, 255, 255, 0.87);
+}
+.navbar-title {
+  display: flex;
+  margin-left: 25px;
+}
+.navbar-title h1 {
+  font-size: 28px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.logo-nav {
+  width: 55px;
+}
+.navbar-nav {
+  margin-right: 35px;
+}
+.navbar-nav ul {
+  display: flex;
+  margin-top: 25px;
+  list-style: none;
+  text-decoration: none;
+  font-size: 18px;
+}
+.navbar-nav a {
+  list-style: none;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  margin-left: 55px;
+}
+
+.navbar-nav a:hover,
+.navbar-nav a:focus {
+  border-bottom: 2px grey solid;
+  color: grey;
+}
+
+.sidebar {
+  position: sticky;
+  width: 200px;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background: #d3d3d3;
+}
+
+.arrow-section {
+  width: 11px;
+}
+
+.content {
+  display: flex;
+}
+.apod-div {
+  display: flex;
+  flex-direction: row;
+  margin: 25px auto;
+  max-width: 75%;
+  text-align: center;
+  height: 100%;
+}
+.apod-img {
+  margin: 30px auto;
+  width: 580px;
+  max-height: 600px;
+  max-width: 650px;
+  filter: drop-shadow(0 0 0.75rem);
+}
+
+.description {
+  text-align: justify;
+  margin: 25px;
+}
+
+.card-img iframe {
+  height: 320px;
+  max-width: 500px;
+}
+
+.nav-title {
+  font-size: 14px;
+}
