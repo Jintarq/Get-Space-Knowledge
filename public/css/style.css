@@ -187,7 +187,7 @@ h1 {
 }
 
 .card-img-articles {
-  width: 120px;
+  width: 100%;
   height: 240px;
   object-fit: scale-down;
   padding: 10px;

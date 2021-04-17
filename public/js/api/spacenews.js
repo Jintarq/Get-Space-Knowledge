@@ -31,7 +31,7 @@ fetch("https://test.spaceflightnewsapi.net/api/v2/articles")
       navItem1.classList.add("nav-item");
       navLink1.classList.add("nav-link");
       cardBody.classList.add("card-body");
-      cardImg.classList.add("card-img", "card-img-articles");
+      cardImg.classList.add("card-img-articles");
       cardTitle.classList.add("card-title", "card-facts-title");
       cardText.classList.add("card-text");
       // Fill the elements of their data
