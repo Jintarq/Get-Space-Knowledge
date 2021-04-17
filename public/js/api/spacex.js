@@ -1,7 +1,7 @@
 const historicalfactsDiv = document.querySelector(".historical-facts");
 
 console.log(historicalfactsDiv);
-fetch("https://api.spacexdata.com/v3/history")
+fetch("https://api.spacexdata.com/v4/history")
   .then((res) => {
     return res.json();
   })
@@ -11,6 +11,7 @@ fetch("https://api.spacexdata.com/v3/history")
     for (let i = 0; i < data.length; i++) {
       // Create the main div which represents a grid for an info
       const card = document.createElement("div");
+      const cardFooter = document.createElement("div");
       const cardHeader = document.createElement("div");
       const cardBody = document.createElement("card-body");
       const cardTitle = document.createElement("h5");
@@ -23,6 +24,7 @@ fetch("https://api.spacexdata.com/v3/history")
       const date = document.createElement("a");
       // Add class to each HTML element (Bootstrap classes)
       card.classList.add("card", "text-center", "card-facts", "border-2");
+      cardFooter.classList.add("card-footer");
       cardHeader.classList.add("card-header");
       cardheaderTabs.classList.add("nav", "nav-tabs", "card-header-tabs");
       date.classList.add("text-muted");
@@ -67,9 +69,10 @@ fetch("https://api.spacexdata.com/v3/history")
       // Here is the card-body div
       cardBody.appendChild(cardTitle);
       cardBody.appendChild(cardText);
-      cardBody.appendChild(date);
+      cardFooter.appendChild(date);
       historicalfactsDiv.appendChild(card);
       card.appendChild(cardHeader);
       card.appendChild(cardBody);
+      card.appendChild(cardFooter);
     }
   });
