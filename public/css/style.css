@@ -200,3 +200,9 @@ h1 {
 .wikipedia-img {
   width: 30px;
 }
+
+/* Rockets section */
+.content-rockets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
