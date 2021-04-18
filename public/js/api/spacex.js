@@ -21,6 +21,9 @@ fetch("https://api.spacexdata.com/v4/history")
       const navItem3 = document.createElement("li");
       const navLink1 = document.createElement("a");
       const navLink3 = document.createElement("a");
+      const articleImg = document.createElement("img");
+      const redditImg = document.createElement("img");
+      const wikipediaImg = document.createElement("img");
       const date = document.createElement("a");
       // Add class to each HTML element (Bootstrap classes)
       card.classList.add("card", "text-center", "card-facts", "border-2");
@@ -28,6 +31,9 @@ fetch("https://api.spacexdata.com/v4/history")
       cardHeader.classList.add("card-header");
       cardheaderTabs.classList.add("nav", "nav-tabs", "card-header-tabs");
       date.classList.add("text-muted");
+      articleImg.classList.add("article-img");
+      redditImg.classList.add("reddit-img");
+      wikipediaImg.classList.add("wikipedia-img");
       navItem1.classList.add("nav-item");
       navItem3.classList.add("nav-item");
       navLink1.classList.add("nav-link");
@@ -43,11 +49,15 @@ fetch("https://api.spacexdata.com/v4/history")
         navLink2.classList.add("nav-link");
         navLink2.innerHTML = "Reddit";
         navLink2.href = data[i].links.reddit;
+        redditImg.src = "../../src/icons8-reddit.svg";
+        navItem2.appendChild(redditImg);
         navItem2.appendChild(navLink2);
         cardheaderTabs.appendChild(navItem2);
       }
       navLink1.innerHTML = "Article";
       navLink3.innerHTML = "Wikipedia";
+      articleImg.src = "../../src/icons8-news.svg";
+      wikipediaImg.src = "../../src/icons8-wikipedia.svg";
       cardTitle.innerHTML = data[i].title;
       cardText.innerHTML = data[i].details;
       navLink1.href = data[i].links.article;
@@ -60,6 +70,8 @@ fetch("https://api.spacexdata.com/v4/history")
 
       // Append each HTML element to his respective parent
       // Here is the main card div
+      navItem1.appendChild(articleImg);
+      navItem3.appendChild(wikipediaImg);
       navItem1.appendChild(navLink1);
       navItem3.appendChild(navLink3);
       cardheaderTabs.appendChild(navItem1);

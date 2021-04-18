@@ -69,9 +69,14 @@ h1 {
   background: #111414;
 }
 .nav-item {
+  display: flex;
   padding: 10px;
 }
-
+.nav-link {
+  color: #32aaff;
+  padding: 5px !important;
+  border: none !important;
+}
 .arrow-section {
   margin-right: 10px;
   width: 15px;
@@ -93,7 +98,6 @@ h1 {
   width: 580px;
   max-height: 600px;
   max-width: 650px;
-  filter: drop-shadow(0 0 0.75rem);
 }
 
 .description {
@@ -114,7 +118,7 @@ h1 {
   background: #121212;
 }
 .card {
-  border: 2px solid #212121 !important;
+  border: 2px solid #17191b !important;
   border-radius: 0px !important;
 }
 .card-img iframe {
@@ -137,9 +141,7 @@ h1 {
 .card-facts-title {
   font-size: 25px;
 }
-.nav-link {
-  color: #009688;
-}
+
 .text-muted {
   text-decoration: none;
 }
@@ -155,7 +157,7 @@ h1 {
 }
 .card-header,
 .card-footer {
-  background: #212121 !important;
+  background: #17191b !important;
 }
 .card-header-tabs {
   display: flex;
@@ -168,7 +170,7 @@ h1 {
 .historical-facts,
 .new-article,
 .blog-section {
-  margin: 40px;
+  margin: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
@@ -191,4 +193,10 @@ h1 {
   height: 240px;
   object-fit: scale-down;
   padding: 10px;
+}
+
+.article-img,
+.reddit-img,
+.wikipedia-img {
+  width: 30px;
 }

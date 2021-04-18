@@ -1,7 +1,7 @@
 const newArticle = document.querySelector(".new-article");
 const blogSection = document.querySelector(".blog-section");
 
-fetch("https://test.spaceflightnewsapi.net/api/v2/articles")
+fetch("https://test.spaceflightnewsapi.net/api/v2/articles?_limit=30")
   .then((res) => {
     return res.json();
   })
@@ -20,10 +20,12 @@ fetch("https://test.spaceflightnewsapi.net/api/v2/articles")
       const cardheaderTabs = document.createElement("ul");
       const navItem1 = document.createElement("li");
       const navLink1 = document.createElement("a");
+      const articleImg = document.createElement("img");
       const date = document.createElement("a");
       // Add class to each HTML element (Bootstrap classes)
       card.classList.add("card", "text-center", "card-facts", "border-2");
       cardFooter.classList.add("card-footer");
+      articleImg.classList.add("article-img");
 
       cardHeader.classList.add("card-header");
       cardheaderTabs.classList.add("nav", "nav-tabs", "card-header-tabs");
@@ -35,6 +37,7 @@ fetch("https://test.spaceflightnewsapi.net/api/v2/articles")
       cardTitle.classList.add("card-title", "card-facts-title");
       cardText.classList.add("card-text");
       // Fill the elements of their data
+      articleImg.src = "../../src/icons8-news.svg";
       cardImg.src = data[i].imageUrl;
       navLink1.innerHTML = "Article";
       cardTitle.innerHTML = data[i].title;
@@ -48,6 +51,7 @@ fetch("https://test.spaceflightnewsapi.net/api/v2/articles")
 
       // Append each HTML element to his respective parent
       // Here is the main card div
+      navItem1.appendChild(articleImg);
       navItem1.appendChild(navLink1);
       cardheaderTabs.appendChild(navItem1);
       cardHeader.appendChild(cardheaderTabs);
