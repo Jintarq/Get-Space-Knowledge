@@ -1,5 +1,68 @@
 const historicalfactsDiv = document.querySelector(".historical-facts");
 
+fetch("https://api.spacexdata.com/v4/rockets")
+  .then((res) => {
+    return res.json();
+  })
+  .then((data) => {
+    console.log(data);
+    for (let y = 0; y < data.length; y++) {
+      const dataSection = document.querySelector(".data-section");
+      const contentRocket = document.querySelector(".content-rocket");
+      const rocket = document.createElement("div");
+      rocket.classList.add("rocket");
+      const rocketPresentation = document.createElement("div");
+      rocketPresentation.classList.add("rocket-presentation");
+      const rocketFacts = document.createElement("div");
+      rocketFacts.classList.add("rocket-facts");
+      const footer = document.createElement("div");
+      footer.classList.add("footer");
+      contentRocket.classList.add("content-rocket");
+      const rocketName = document.createElement("h1");
+      rocketName.classList.add("rocket-name");
+      const rocketImg = document.createElement("img");
+      rocketImg.classList.add("rocket-img");
+      const mainInformations = document.createElement("a");
+      mainInformations.classList.add("main-informations");
+      const descriptionRocket = document.createElement("p");
+      descriptionRocket.classList.add("description-rocket", "text-white");
+      const facts = document.createElement("a");
+      const footerText = document.createElement("a");
+      footerText.classList.add("footer-text");
+      footerText.href = data[y].wikipedia;
+      footerText.textContent = "Get more informations here.";
+      const wikipedia = document.createElement("img");
+      wikipedia.src = "../../src/icons8-wikipedia.svg";
+      wikipedia.classList.add("wikipedia-img");
+      facts.classList.add("facts", "text-white");
+      rocketName.textContent = data[y].name;
+      rocketImg.src = data[y].flickr_images[0];
+      mainInformations.textContent = `Developped by ${data[y].company} in ${data[y].country}.`;
+      descriptionRocket.textContent = data[y].description;
+
+      if (data[y].success_rate_pct !== 0) {
+        facts.textContent = `First flight : ${data[y].first_flight}. Rocket measure : ${data[y].height.meters} meters (${data[y].height.feet} feet).
+      Mass : ${data[y].mass.kg} kg (${data[y].mass.lb} lb). Diameter around : ${data[y].diameter.meters} meters (${data[y].diameter.feet} feet).
+       Cost per launch : ${data[y].cost_per_launch} $. Estimated success rate : ${data[y].success_rate_pct}% `;
+      } else {
+        facts.textContent = `First flight : ${data[y].first_flight}. Rocket measure : ${data[y].height.meters} meters (${data[y].height.feet} feet).
+    Mass : ${data[y].mass.kg} kg (${data[y].mass.lb} lb). Diameter around : ${data[y].diameter.meters} meters (${data[y].diameter.feet} feet).
+     Cost per launch : ${data[y].cost_per_launch} $. `;
+      }
+      footerText.appendChild(wikipedia);
+      footer.appendChild(footerText);
+      rocketFacts.appendChild(facts);
+      rocketPresentation.appendChild(rocketName);
+      rocketPresentation.appendChild(rocketImg);
+      rocketPresentation.appendChild(mainInformations);
+      rocketPresentation.appendChild(descriptionRocket);
+      rocket.appendChild(rocketPresentation);
+      rocket.appendChild(rocketFacts);
+      rocket.appendChild(footer);
+      contentRocket.appendChild(rocket);
+    }
+  });
+
 fetch("https://api.spacexdata.com/v4/history")
   .then((res) => {
     return res.json();
@@ -84,66 +147,5 @@ fetch("https://api.spacexdata.com/v4/history")
       card.appendChild(cardHeader);
       card.appendChild(cardBody);
       card.appendChild(cardFooter);
-    }
-  });
-
-fetch("https://api.spacexdata.com/v4/rockets")
-  .then((res) => {
-    return res.json();
-  })
-  .then((data) => {
-    console.log(data);
-    for (let y = 0; y < data.length; y++) {
-      const dataSection = document.querySelector(".data-section");
-      const contentRocket = document.createElement("div");
-      const rocketPresentation = document.createElement("div");
-      rocketPresentation.classList.add("rocket-presentation");
-      const rocketFacts = document.createElement("div");
-      rocketFacts.classList.add("rocket-facts");
-      const footer = document.createElement("div");
-      footer.classList.add("footer");
-      contentRocket.classList.add("content-rocket");
-      const rocketName = document.createElement("h1");
-      rocketName.classList.add("rocket-name");
-      const rocketImg = document.createElement("img");
-      rocketImg.classList.add("rocket-img");
-      const mainInformations = document.createElement("a");
-      mainInformations.classList.add("main-informations");
-      const descriptionRocket = document.createElement("p");
-      descriptionRocket.classList.add("description-rocket", "text-white");
-      const facts = document.createElement("a");
-      const footerText = document.createElement("a");
-      footerText.classList.add("footer-text");
-      footerText.href = data[y].wikipedia;
-      footerText.textContent = "Get more informations here.";
-      const wikipedia = document.createElement("img");
-      wikipedia.src = "../../src/icons8-wikipedia.svg";
-      wikipedia.classList.add("wikipedia-img");
-      facts.classList.add("facts", "text-white");
-      rocketName.textContent = data[y].name;
-      rocketImg.src = data[y].flickr_images[0];
-      mainInformations.textContent = `Developped by ${data[y].company} in ${data[y].country}.`;
-      descriptionRocket.textContent = data[y].description;
-
-      if (data[y].success_rate_pct !== 0) {
-        facts.textContent = `The first flight was in ${data[y].first_flight}. The rocket measured at least ${data[y].height.meters} meters (${data[y].height.feet} feet).
-      Its mass was ${data[y].mass.kg} kg (${data[y].mass.lb} lb). Its diameter was around ${data[y].diameter.meters} meters (${data[y].diameter.feet} feet).
-       The cost per launch was to ${data[y].cost_per_launch} $. Its estimated success rate was ${data[y].success_rate_pct}% `;
-      } else {
-        facts.textContent = `The first flight was in ${data[y].first_flight}. The rocket measured at least ${data[y].height.meters} meters (${data[y].height.feet} feet).
-    Its mass was ${data[y].mass.kg} kg (${data[y].mass.lb} lb). Its diameter was around ${data[y].diameter.meters} meters (${data[y].diameter.feet} feet).
-     The cost per launch was to ${data[y].cost_per_launch} $. `;
-      }
-      footerText.appendChild(wikipedia);
-      footer.appendChild(footerText);
-      rocketFacts.appendChild(facts);
-      rocketPresentation.appendChild(rocketName);
-      rocketPresentation.appendChild(rocketImg);
-      rocketPresentation.appendChild(mainInformations);
-      rocketPresentation.appendChild(descriptionRocket);
-      contentRocket.appendChild(rocketPresentation);
-      contentRocket.appendChild(rocketFacts);
-      contentRocket.appendChild(footer);
-      dataSection.appendChild(contentRocket);
     }
   });
