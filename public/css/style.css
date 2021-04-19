@@ -64,7 +64,7 @@ h1 {
 .sidebar {
   color: white;
   position: sticky;
-  width: 280px;
+  min-width: 280px;
   top: 0;
   left: 0;
   height: 100vh;
@@ -77,7 +77,7 @@ h1 {
 }
 .nav-link {
   color: #32aaff;
-  padding: 5px !important;
+  padding: 3px !important;
   border: none !important;
 }
 .arrow-section {
@@ -160,6 +160,7 @@ h1 {
 }
 .card-header,
 .card-footer {
+  padding: 7px !important;
   background: #17191b !important;
 }
 .card-header-tabs {
@@ -194,6 +195,10 @@ h1 {
 .blogs {
   text-align: center;
 }
+.articles h1,
+.blogs h1 {
+  margin: 50px;
+}
 
 .card-img-articles {
   width: 100%;
@@ -222,7 +227,7 @@ h1 {
 .rocket {
   margin: 50px 10%;
   background: #121212 !important;
-  padding: 50px;
+  padding: 20px;
 }
 .rocket-presentation {
   text-align: justify;

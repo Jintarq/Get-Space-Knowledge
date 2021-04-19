@@ -30,7 +30,7 @@ fetch("https://api.spacexdata.com/v4/rockets")
       const footerText = document.createElement("a");
       footerText.classList.add("footer-text");
       footerText.href = data[y].wikipedia;
-      footerText.textContent = "Get more informations here.";
+      footerText.textContent = "Get more informations here";
       const wikipedia = document.createElement("img");
       wikipedia.src = "../../src/icons8-wikipedia.svg";
       wikipedia.classList.add("wikipedia-img");
@@ -63,7 +63,7 @@ fetch("https://api.spacexdata.com/v4/rockets")
     }
   });
 
-fetch("https://api.spacexdata.com/v4/history")
+fetch("https://api.spacexdata.com/v3/history")
   .then((res) => {
     return res.json();
   })
@@ -74,7 +74,7 @@ fetch("https://api.spacexdata.com/v4/history")
       const card = document.createElement("div");
       const cardFooter = document.createElement("div");
       const cardHeader = document.createElement("div");
-      const cardBody = document.createElement("card-body");
+      const cardBody = document.createElement("div");
       const cardTitle = document.createElement("h5");
       const cardText = document.createElement("p");
       const cardheaderTabs = document.createElement("ul");
@@ -128,6 +128,28 @@ fetch("https://api.spacexdata.com/v4/history")
       // We split the year-month-day from the hour-minute-second part
       const dateFormated = newdate.split("T");
       date.innerHTML = dateFormated[0];
+      // If the description of a news is too long, cut him at limit and replace it by "knowMore".
+      const limit = 300;
+      const knowMore = document.createElement("span");
+      const reduceText = document.createElement("span");
+      knowMore.innerText = ". . . Do you want to know more ? Click !";
+      knowMore.classList.add("text-details");
+      reduceText.innerText = " Do you want to reduce the text now ?";
+      reduceText.classList.add("text-details");
+      const actualText = cardText.innerText;
+      if (actualText.length > 300) {
+        cardText.innerText = actualText.substring(0, limit);
+        cardText.appendChild(knowMore);
+        knowMore.addEventListener("click", () => {
+          cardText.innerText = data[i].details;
+          cardText.appendChild(reduceText);
+          cardText.removeChild(knowMore);
+        });
+        reduceText.addEventListener("click", () => {
+          cardText.innerText = actualText.substring(0, limit);
+          cardText.appendChild(knowMore);
+        });
+      }
 
       // Append each HTML element to his respective parent
       // Here is the main card div
