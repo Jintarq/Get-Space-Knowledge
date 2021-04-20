@@ -132,19 +132,20 @@ fetch("https://api.spacexdata.com/v3/history")
       const limit = 300;
       const knowMore = document.createElement("span");
       const reduceText = document.createElement("span");
-      knowMore.innerText = ". . . Do you want to know more ? Click !";
+      knowMore.innerText = "... Click to know more";
       knowMore.classList.add("text-details");
-      reduceText.innerText = " Do you want to reduce the text now ?";
+      reduceText.innerText = "Click to reduce";
       reduceText.classList.add("text-details");
       const actualText = cardText.innerText;
       if (actualText.length > 300) {
         cardText.innerText = actualText.substring(0, limit);
         cardText.appendChild(knowMore);
         knowMore.addEventListener("click", () => {
+          // data[i].details remove knowMore, so we just need to append the reduceText element.
           cardText.innerText = data[i].details;
           cardText.appendChild(reduceText);
-          cardText.removeChild(knowMore);
         });
+        // When we click on reduceText, it reinitialized the former cardText element.
         reduceText.addEventListener("click", () => {
           cardText.innerText = actualText.substring(0, limit);
           cardText.appendChild(knowMore);

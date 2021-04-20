@@ -247,3 +247,12 @@ h1 {
   align-items: center;
   text-align: justify;
 }
+
+.text-details {
+  color: #08c;
+  cursor: pointer;
+}
+.text-details:hover {
+  color: royalblue;
+  border-bottom: 1px solid royalblue;
+}
