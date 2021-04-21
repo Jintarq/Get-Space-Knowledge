@@ -4,6 +4,8 @@ const agenciesList = document.querySelector(".agencies-list");
 const getmoreArticles = document.querySelector(".get-more-articles");
 const getmoreBlogs = document.querySelector(".get-more-blogs");
 const nextBtn = document.querySelector(".next-btn");
+const prevBtn = document.querySelector(".prev-btn");
+const pageText = document.querySelector(".page");
 let limitArticles = 12;
 let startArticles = limitArticles;
 let limitBlogs = 12;
@@ -14,8 +16,7 @@ fetch(`https://lldev.thespacedevs.com/2.0.0/agencies/?limit=200`)
     return res.json();
   })
   .then((data) => {
-    console.log(data.next);
-    console.log(data.results);
+    let pageNumber = 1;
     for (let i = 0; i < data.results.length; i++) {
       console.log(data.results[i].abbrev);
 
@@ -31,13 +32,25 @@ fetch(`https://lldev.thespacedevs.com/2.0.0/agencies/?limit=200`)
         agenciesList.appendChild(agencie);
       }
     }
+    pageText.innerText = `Page ${pageNumber}`;
+    if (pageNumber == 1) {
+      prevBtn.classList.add("none");
+    }
     nextBtn.addEventListener("click", () => {
       return fetch(data.next)
         .then((res) => {
           return res.json();
         })
         .then((data) => {
-          console.log(data);
+          prevBtn.classList.remove("none");
+          pageNumber++;
+          pageText.innerText = `Pages ${pageNumber}`;
+          if (pageNumber < 3) {
+            prevBtn.classList.remove("none");
+            nextBtn.classList.remove("none");
+          } else if (pageNumber == 3) {
+            nextBtn.classList.add("none");
+          }
         });
     });
   });
