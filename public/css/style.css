@@ -476,7 +476,7 @@ a {
 }
 
 .none {
-  display: none;
+  display: none !important;
 }
 .search-section {
   display: flex !important;
