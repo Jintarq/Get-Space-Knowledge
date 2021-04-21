@@ -478,3 +478,37 @@ a {
 .none {
   display: none;
 }
+.search-section {
+  display: flex !important;
+  justify-content: space-around;
+  margin: 20px;
+}
+.search label {
+  font-size: 25px;
+}
+.btn-div {
+  display: flex;
+  justify-content: center;
+}
+.agencies-list li {
+  list-style: outside;
+}
+.next-btn,
+.prev-btn {
+  margin-left: 50px;
+  padding: 3px 55px !important;
+}
+.btn-search {
+  padding: 3px 8px !important;
+}
+.search-section {
+  margin: 85px;
+}
+#search-input {
+  padding: 2.5px;
+  border-radius: 5px;
+  margin-left: 15px;
+}
+#search {
+  padding: 5px;
+}

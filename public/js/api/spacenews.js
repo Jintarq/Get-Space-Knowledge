@@ -6,52 +6,188 @@ const getmoreBlogs = document.querySelector(".get-more-blogs");
 const nextBtn = document.querySelector(".next-btn");
 const prevBtn = document.querySelector(".prev-btn");
 const pageText = document.querySelector(".page");
+const agencyTitle = document.querySelector("#title-agency");
 let limitArticles = 12;
 let startArticles = limitArticles;
 let limitBlogs = 12;
 let startBlogs = limitArticles;
+let pageNumber = 1;
 
 fetch(`https://lldev.thespacedevs.com/2.0.0/agencies/?limit=200`)
   .then((res) => {
     return res.json();
   })
   .then((data) => {
-    let pageNumber = 1;
-    for (let i = 0; i < data.results.length; i++) {
-      console.log(data.results[i].abbrev);
+    pageText.innerText = `Page ${pageNumber}`;
 
-      if (data.results[i].abbrev == "" || data.results[i].abbrev == null) {
-        const agencie = document.createElement("li");
-        agencie.classList.add("agencie", "text-white");
-        agencie.innerText = `${data.results[i].name}`;
-        agenciesList.appendChild(agencie);
-      } else {
-        const agencie = document.createElement("li");
-        agencie.classList.add("agencie", "text-white");
-        agencie.innerText = `${data.results[i].abbrev} - ${data.results[i].name}`;
-        agenciesList.appendChild(agencie);
+    if (pageNumber == 1) {
+      console.log(data);
+      prevBtn.classList.add("none");
+
+      for (let i = 0; i < data.results.length; i++) {
+        console.log(data.results[i].abbrev);
+
+        if (data.results[i].abbrev == "" || data.results[i].abbrev == null) {
+          const agency = document.createElement("li");
+          agency.classList.add("agency", "text-white");
+          agency.innerText = `${data.results[i].name}`;
+          agenciesList.appendChild(agency);
+        } else {
+          const agency = document.createElement("li");
+          agency.classList.add("agency", "text-white");
+          agency.innerText = `${data.results[i].abbrev} - ${data.results[i].name}`;
+          agenciesList.appendChild(agency);
+        }
       }
     }
-    pageText.innerText = `Page ${pageNumber}`;
-    if (pageNumber == 1) {
-      prevBtn.classList.add("none");
-    }
     nextBtn.addEventListener("click", () => {
-      return fetch(data.next)
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          prevBtn.classList.remove("none");
-          pageNumber++;
-          pageText.innerText = `Pages ${pageNumber}`;
-          if (pageNumber < 3) {
+      pageNumber++;
+      agencyTitle.scrollIntoView();
+      if (pageNumber == 2) {
+        return fetch(data.next)
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            console.log(data);
             prevBtn.classList.remove("none");
-            nextBtn.classList.remove("none");
-          } else if (pageNumber == 3) {
-            nextBtn.classList.add("none");
+            agenciesList.innerHTML = "";
+            pageText.innerText = `Pages ${pageNumber}`;
+            for (let i = 0; i < data.results.length; i++) {
+              if (
+                data.results[i].abbrev == "" ||
+                data.results[i].abbrev == null
+              ) {
+                const agency = document.createElement("li");
+                agency.classList.add("agency", "text-white");
+                agency.innerText = `${data.results[i].name}`;
+                agenciesList.appendChild(agency);
+              } else {
+                const agency = document.createElement("li");
+                agency.classList.add("agency", "text-white");
+                agency.innerText = `${data.results[i].abbrev} - ${data.results[i].name}`;
+                agenciesList.appendChild(agency);
+              }
+            }
+          });
+      } else if (pageNumber == 3) {
+        nextBtn.classList.add("none");
+        return fetch(data.next)
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            return fetch(data.next);
+          })
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            prevBtn.classList.remove("none");
+            agenciesList.innerHTML = "";
+            pageText.innerText = `Pages ${pageNumber}`;
+            for (let i = 0; i < data.results.length; i++) {
+              if (
+                data.results[i].abbrev == "" ||
+                data.results[i].abbrev == null
+              ) {
+                const agency = document.createElement("li");
+                agency.classList.add("agency", "text-white");
+                agency.innerText = `${data.results[i].name}`;
+                agenciesList.appendChild(agency);
+              } else {
+                const agency = document.createElement("li");
+                agency.classList.add("agency", "text-white");
+                agency.innerText = `${data.results[i].abbrev} - ${data.results[i].name}`;
+                agenciesList.appendChild(agency);
+              }
+            }
+          });
+      }
+    });
+    prevBtn.addEventListener("click", () => {
+      agencyTitle.scrollIntoView();
+      pageNumber--;
+      if (pageNumber == 1) {
+        console.log(data);
+        prevBtn.classList.add("none");
+
+        for (let i = 0; i < data.results.length; i++) {
+          console.log(data.results[i].abbrev);
+
+          if (data.results[i].abbrev == "" || data.results[i].abbrev == null) {
+            const agency = document.createElement("li");
+            agency.classList.add("agency", "text-white");
+            agency.innerText = `${data.results[i].name}`;
+            agenciesList.appendChild(agency);
+          } else {
+            const agency = document.createElement("li");
+            agency.classList.add("agency", "text-white");
+            agency.innerText = `${data.results[i].abbrev} - ${data.results[i].name}`;
+            agenciesList.appendChild(agency);
           }
-        });
+        }
+      } else if (pageNumber == 2) {
+        return fetch(data.next)
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            console.log(data);
+            nextBtn.classList.remove("none");
+            agenciesList.innerHTML = "";
+            pageText.innerText = `Pages ${pageNumber}`;
+            for (let i = 0; i < data.results.length; i++) {
+              if (
+                data.results[i].abbrev == "" ||
+                data.results[i].abbrev == null
+              ) {
+                const agency = document.createElement("li");
+                agency.classList.add("agency", "text-white");
+                agency.innerText = `${data.results[i].name}`;
+                agenciesList.appendChild(agency);
+              } else {
+                const agency = document.createElement("li");
+                agency.classList.add("agency", "text-white");
+                agency.innerText = `${data.results[i].abbrev} - ${data.results[i].name}`;
+                agenciesList.appendChild(agency);
+              }
+            }
+          });
+      } else if (pageNumber == 3) {
+        nextBtn.classList.add("none");
+        return fetch(data.next)
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            return fetch(data.next);
+          })
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            prevBtn.classList.remove("none");
+            agenciesList.innerHTML = "";
+            pageText.innerText = `Pages ${pageNumber}`;
+            for (let i = 0; i < data.results.length; i++) {
+              if (
+                data.results[i].abbrev == "" ||
+                data.results[i].abbrev == null
+              ) {
+                const agency = document.createElement("li");
+                agency.classList.add("agency", "text-white");
+                agency.innerText = `${data.results[i].name}`;
+                agenciesList.appendChild(agency);
+              } else {
+                const agency = document.createElement("li");
+                agency.classList.add("agency", "text-white");
+                agency.innerText = `${data.results[i].abbrev} - ${data.results[i].name}`;
+                agenciesList.appendChild(agency);
+              }
+            }
+          });
+      }
     });
   });
 
