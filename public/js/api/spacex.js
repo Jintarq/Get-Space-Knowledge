@@ -5,7 +5,6 @@ fetch("https://api.spacexdata.com/v4/rockets")
     return res.json();
   })
   .then((data) => {
-    console.log(data);
     for (let y = 0; y < data.length; y++) {
       const dataSection = document.querySelector(".data-section");
       const contentRocket = document.querySelector(".content-rocket");
@@ -68,7 +67,6 @@ fetch("https://api.spacexdata.com/v3/history")
     return res.json();
   })
   .then((data) => {
-    console.log(data);
     for (let i = 0; i < data.length; i++) {
       // Create the main div which represents a grid for an info
       const card = document.createElement("div");

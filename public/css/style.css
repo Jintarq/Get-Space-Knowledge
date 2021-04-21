@@ -249,13 +249,24 @@ h1 {
   text-align: justify;
 }
 
-.text-details {
+.text-details,
+.get-more-articles,
+.get-more-blogs {
   color: #08c;
   cursor: pointer;
 }
 .text-details:hover {
   color: royalblue;
   border-bottom: 1px solid royalblue;
+}
+.get-more-articles,
+.get-more-blogs {
+  text-align: center;
+  padding: 10px;
+}
+.get-more-articles:hover,
+.get-more-blogs:hover {
+  color: royalblue;
 }
 
 /* Chatroom section */
