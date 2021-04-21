@@ -1,12 +1,50 @@
 const newArticle = document.querySelector(".new-article");
 const blogSection = document.querySelector(".blog-section");
+const agenciesList = document.querySelector(".agencies-list");
 const getmoreArticles = document.querySelector(".get-more-articles");
 const getmoreBlogs = document.querySelector(".get-more-blogs");
+const nextBtn = document.querySelector(".next-btn");
 let limitArticles = 12;
 let startArticles = limitArticles;
 let limitBlogs = 12;
 let startBlogs = limitArticles;
-fetch(`https://spaceflightnewsapi.net/api/v2/articles?_limit=${limitArticles}`)
+
+fetch(`https://lldev.thespacedevs.com/2.0.0/agencies/?limit=200`)
+  .then((res) => {
+    return res.json();
+  })
+  .then((data) => {
+    console.log(data.next);
+    console.log(data.results);
+    for (let i = 0; i < data.results.length; i++) {
+      console.log(data.results[i].abbrev);
+
+      if (data.results[i].abbrev == "" || data.results[i].abbrev == null) {
+        const agencie = document.createElement("li");
+        agencie.classList.add("agencie", "text-white");
+        agencie.innerText = `${data.results[i].name}`;
+        agenciesList.appendChild(agencie);
+      } else {
+        const agencie = document.createElement("li");
+        agencie.classList.add("agencie", "text-white");
+        agencie.innerText = `${data.results[i].abbrev} - ${data.results[i].name}`;
+        agenciesList.appendChild(agencie);
+      }
+    }
+    nextBtn.addEventListener("click", () => {
+      return fetch(data.next)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data);
+        });
+    });
+  });
+
+fetch(
+  `https://spaceflightnewsapi.net/api/v2/articles?_limit=${limitArticles}&=nasa`
+)
   .then((res) => {
     return res.json();
   })
