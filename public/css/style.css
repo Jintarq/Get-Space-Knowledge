@@ -481,7 +481,8 @@ a {
 .search-section {
   display: flex !important;
   justify-content: space-around;
-  margin: 20px;
+  margin: 25px;
+  color: white;
 }
 .search label {
   font-size: 25px;
@@ -490,9 +491,7 @@ a {
   display: flex;
   justify-content: center;
 }
-.agencies-list li {
-  list-style: outside;
-}
+
 .next-btn,
 .prev-btn {
   margin-left: 50px;
@@ -501,9 +500,7 @@ a {
 .btn-search {
   padding: 3px 8px !important;
 }
-.search-section {
-  margin: 85px;
-}
+
 #search-input {
   padding: 2.5px;
   border-radius: 5px;
@@ -511,4 +508,36 @@ a {
 }
 #search {
   padding: 5px;
+}
+#title-agency {
+  margin: 50px !important;
+}
+.agencies {
+  width: 1200px;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0 auto;
+}
+
+.agencies-list li {
+  list-style: none;
+  margin: 2px;
+}
+
+.response {
+  width: 800px;
+  margin: 80px auto;
+}
+.card {
+  margin: 50px;
+}
+.card-img-top {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.response-img {
+  width: 100% !important;
+  height: 600px !important;
+  object-fit: fill;
 }
