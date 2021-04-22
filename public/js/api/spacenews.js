@@ -51,7 +51,7 @@ search.addEventListener("click", () => {
             const spacecraft = document.createElement("p");
             const launchers = document.createElement("p");
 
-            div.classList.add("card");
+            div.classList.add("card", "response-card");
             cardImg.classList.add("card-img-top", "response-img");
             cardBody.classList.add("card-body");
             cardImg.src = data.results[i].image_url;
