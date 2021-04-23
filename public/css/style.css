@@ -124,6 +124,7 @@ h1 {
 .card {
   border: 2px solid #17191b !important;
   border-radius: 0px !important;
+  background-color: #121212 !important;
 }
 .card-img iframe {
   height: 320px;
@@ -512,11 +513,12 @@ a {
 #title-agency {
   margin: 50px !important;
 }
-.agencies {
-  width: 1200px;
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr);
+.content-search {
   margin: 0 auto;
+}
+.agencies {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .agencies-list li {
@@ -540,4 +542,8 @@ a {
   width: 100% !important;
   height: 600px !important;
   object-fit: fill;
+}
+.clear-section {
+  display: flex;
+  justify-content: center;
 }
