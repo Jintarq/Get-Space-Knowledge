@@ -23,12 +23,12 @@ search.addEventListener("click", () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data.results);
+        console.log(Object.values(data.results));
 
         if (data.results.length > 1) {
           for (let i = 0; i < data.results.length; i++) {
-            const div = document.createElement("div");
             const cardImg = document.createElement("img");
+            const div = document.createElement("div");
             const cardBody = document.createElement("div");
             const name = document.createElement("p");
             const countryCode = document.createElement("p");
@@ -38,19 +38,42 @@ search.addEventListener("click", () => {
             const description = document.createElement("p");
             const spacecraft = document.createElement("p");
             const launchers = document.createElement("p");
-
             div.classList.add("card", "response-card");
-            cardImg.classList.add("card-img-top", "response-img");
             cardBody.classList.add("card-body");
-            cardImg.src = data.results[i].image_url;
-            name.innerText = `${data.results[i].abbrev} - ${data.results[i].name}`;
-            countryCode.innerText = `From ${data.results[i].country_code}.`;
-            administrator.innerText = data.results[i].administrator;
-            type.innerText = `Type: ${data.results[i].type}`;
-            foundingYears.innerText = `Was founded in: ${data.results[i].founding_year}`;
-            description.innerText = data.results[i].description;
-            spacecraft.innerText = `Spacecraft: ${data.results[i].spacecraft}`;
-            launchers.innerText = `Launchers: ${data.results[i].launchers}`;
+
+            if (data.results[i].name !== null || data.results[i].name !== "") {
+              name.innerText = `${data.results[i].abbrev} - ${data.results[i].name}`;
+            }
+            if (
+              data.results[i].country_code !== null ||
+              data.results[i].country_code !== ""
+            ) {
+              countryCode.innerText = `From ${data.results[i].country_code}.`;
+            }
+            if (data.results[i].administrator !== null) {
+              administrator.innerText = data.results[i].administrator;
+            }
+            if (data.results[i].type !== null || data.results[i].type !== "") {
+              type.innerText = `Type: ${data.results[i].type}`;
+            }
+            if (data.results[i].foundingYears !== null) {
+              foundingYears.innerText = `Was founded in: ${data.results[i].founding_year}`;
+            }
+            if (data.results[i].image_url !== null) {
+              cardImg.classList.add("card-img-top", "response-img");
+              cardImg.src = data.results[i].image_url;
+            }
+            if (data.results[i].description !== null) {
+              description.innerText = data.results[i].description;
+            }
+
+            if (data.results[i].spacecraft !== "") {
+              spacecraft.innerText = `Spacecraft: ${data.results[i].spacecraft}`;
+            }
+            if (data.results[i].launchers !== "") {
+              launchers.innerText = `Launchers: ${data.results[i].launchers}`;
+            }
+
             cardBody.appendChild(name);
             cardBody.appendChild(countryCode);
             cardBody.appendChild(administrator);
@@ -79,15 +102,39 @@ search.addEventListener("click", () => {
           div.classList.add("card");
           cardImg.classList.add("card-img-top", "response-img");
           cardBody.classList.add("card-body");
-          cardImg.src = data.results[0].image_url;
-          name.innerText = `${data.results[0].abbrev} - ${data.results[0].name}`;
-          countryCode.innerText = `From ${data.results[0].country_code}.`;
-          administrator.innerText = data.results[0].administrator;
-          type.innerText = `Type: ${data.results[0].type}`;
-          foundingYears.innerText = `Was founded in: ${data.results[0].founding_year}`;
-          description.innerText = data.results[0].description;
-          spacecraft.innerText = `Spacecraft: ${data.results[0].spacecraft}`;
-          launchers.innerText = `Launchers: ${data.results[0].launchers}`;
+
+          if (data.results[0].name !== null || data.results[0].name !== "") {
+            name.innerText = `${data.results[0].abbrev} - ${data.results[0].name}`;
+          }
+          if (
+            data.results[0].country_code !== null ||
+            data.results[0].country_code !== ""
+          ) {
+            countryCode.innerText = `From ${data.results[0].country_code}.`;
+          }
+          if (data.results[0].administrator !== null) {
+            administrator.innerText = data.results[0].administrator;
+          }
+          if (data.results[0].type !== null || data.results[0].type !== "") {
+            type.innerText = `Type: ${data.results[0].type}`;
+          }
+          if (data.results[0].foundingYears !== null) {
+            foundingYears.innerText = `Was founded in: ${data.results[0].founding_year}`;
+          }
+          if (data.results[0].image_url !== null) {
+            cardImg.classList.add("card-img-top", "response-img");
+            cardImg.src = data.results[0].image_url;
+          }
+          if (data.results[0].description !== null) {
+            description.innerText = data.results[0].description;
+          }
+
+          if (data.results[0].spacecraft !== "") {
+            spacecraft.innerText = `Spacecraft: ${data.results[0].spacecraft}`;
+          }
+          if (data.results[0].launchers !== "") {
+            launchers.innerText = `Launchers: ${data.results[0].launchers}`;
+          }
           cardBody.appendChild(name);
           cardBody.appendChild(countryCode);
           cardBody.appendChild(administrator);
@@ -117,8 +164,6 @@ fetch(`https://lldev.thespacedevs.com/2.0.0/agencies/?limit=200`)
   .then((data) => {
     function createLi(data) {
       for (let i = 0; i < data.results.length; i++) {
-        console.log(data.results[i].abbrev);
-
         if (data.results[i].abbrev == "" || data.results[i].abbrev == null) {
           if (agenciesList.childNodes.length <= 50) {
             const agency = document.createElement("li");
@@ -149,7 +194,6 @@ fetch(`https://lldev.thespacedevs.com/2.0.0/agencies/?limit=200`)
     pageText.innerText = `Page ${pageNumber}`;
 
     if (pageNumber == 1) {
-      console.log(data);
       prevBtn.classList.add("none");
       createLi(data);
     }
@@ -162,7 +206,6 @@ fetch(`https://lldev.thespacedevs.com/2.0.0/agencies/?limit=200`)
             return res.json();
           })
           .then((data) => {
-            console.log(data);
             prevBtn.classList.remove("none");
             agenciesList.innerHTML = "";
             agenciesList2.innerHTML = "";
@@ -197,7 +240,6 @@ fetch(`https://lldev.thespacedevs.com/2.0.0/agencies/?limit=200`)
       pageNumber--;
       pageText.innerText = `Page ${pageNumber}`;
       if (pageNumber == 1) {
-        console.log(data);
         prevBtn.classList.add("none");
         agenciesList.innerHTML = "";
         agenciesList2.innerHTML = "";
