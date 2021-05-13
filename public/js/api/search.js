@@ -41,36 +41,33 @@ search.addEventListener("click", () => {
             div.classList.add("card", "response-card");
             cardBody.classList.add("card-body");
 
-            if (data.results[i].name !== null || data.results[i].name !== "") {
+            if (data.results[i].name) {
               name.innerText = `${data.results[i].abbrev} - ${data.results[i].name}`;
             }
-            if (
-              data.results[i].country_code !== null ||
-              data.results[i].country_code !== ""
-            ) {
+            if (data.results[i].country_code) {
               countryCode.innerText = `From ${data.results[i].country_code}.`;
             }
-            if (data.results[i].administrator !== null) {
+            if (data.results[i].administrator) {
               administrator.innerText = data.results[i].administrator;
             }
-            if (data.results[i].type !== null || data.results[i].type !== "") {
+            if (data.results[i].type) {
               type.innerText = `Type: ${data.results[i].type}`;
             }
-            if (data.results[i].foundingYears !== null) {
+            if (data.results[i].foundingYears) {
               foundingYears.innerText = `Was founded in: ${data.results[i].founding_year}`;
             }
-            if (data.results[i].image_url !== null) {
+            if (data.results[i].image_url) {
               cardImg.classList.add("card-img-top", "response-img");
               cardImg.src = data.results[i].image_url;
             }
-            if (data.results[i].description !== null) {
+            if (data.results[i].description) {
               description.innerText = data.results[i].description;
             }
 
-            if (data.results[i].spacecraft !== "") {
+            if (data.results[i].spacecraft) {
               spacecraft.innerText = `Spacecraft: ${data.results[i].spacecraft}`;
             }
-            if (data.results[i].launchers !== "") {
+            if (data.results[i].launchers) {
               launchers.innerText = `Launchers: ${data.results[i].launchers}`;
             }
 
