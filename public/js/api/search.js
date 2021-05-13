@@ -100,36 +100,33 @@ search.addEventListener("click", () => {
           cardImg.classList.add("card-img-top", "response-img");
           cardBody.classList.add("card-body");
 
-          if (data.results[0].name !== null || data.results[0].name !== "") {
+          if (data.results[0].name) {
             name.innerText = `${data.results[0].abbrev} - ${data.results[0].name}`;
           }
-          if (
-            data.results[0].country_code !== null ||
-            data.results[0].country_code !== ""
-          ) {
+          if (data.results[0].country_code) {
             countryCode.innerText = `From ${data.results[0].country_code}.`;
           }
-          if (data.results[0].administrator !== null) {
+          if (data.results[0].administrator) {
             administrator.innerText = data.results[0].administrator;
           }
-          if (data.results[0].type !== null || data.results[0].type !== "") {
+          if (data.results[0].type) {
             type.innerText = `Type: ${data.results[0].type}`;
           }
-          if (data.results[0].foundingYears !== null) {
+          if (data.results[0].foundingYears) {
             foundingYears.innerText = `Was founded in: ${data.results[0].founding_year}`;
           }
-          if (data.results[0].image_url !== null) {
+          if (data.results[0].image_url) {
             cardImg.classList.add("card-img-top", "response-img");
             cardImg.src = data.results[0].image_url;
           }
-          if (data.results[0].description !== null) {
+          if (data.results[0].description) {
             description.innerText = data.results[0].description;
           }
 
-          if (data.results[0].spacecraft !== "") {
+          if (data.results[0].spacecraft) {
             spacecraft.innerText = `Spacecraft: ${data.results[0].spacecraft}`;
           }
-          if (data.results[0].launchers !== "") {
+          if (data.results[0].launchers) {
             launchers.innerText = `Launchers: ${data.results[0].launchers}`;
           }
           cardBody.appendChild(name);
