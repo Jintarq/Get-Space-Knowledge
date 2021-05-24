@@ -27,9 +27,9 @@ fetch("https://api.spacexdata.com/v4/rockets")
       descriptionRocket.classList.add("description-rocket", "text-white");
       const facts = document.createElement("a");
       const footerText = document.createElement("a");
-      footerText.classList.add("footer-text");
-      footerText.href = data[y].wikipedia;
+      footerText.classList.add("footer-text", "wiki");
       footerText.textContent = "Get more informations here";
+      footerText.href = data[y].wikipedia;
       const wikipedia = document.createElement("img");
       wikipedia.src = "../../src/icons8-wikipedia.svg";
       wikipedia.classList.add("wikipedia-img");
@@ -48,7 +48,7 @@ fetch("https://api.spacexdata.com/v4/rockets")
     Mass : ${data[y].mass.kg} kg (${data[y].mass.lb} lb). Diameter around : ${data[y].diameter.meters} meters (${data[y].diameter.feet} feet).
      Cost per launch : ${data[y].cost_per_launch} $. `;
       }
-      footerText.appendChild(wikipedia);
+      footer.appendChild(wikipedia);
       footer.appendChild(footerText);
       rocketFacts.appendChild(facts);
       rocketPresentation.appendChild(rocketName);
